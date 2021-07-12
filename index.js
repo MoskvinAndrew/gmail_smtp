@@ -5,9 +5,14 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const port = 3011;
 app.use(cors());
-app.use(cors({ origin: "http:\\localhost:3000" }))
+// app.use(cors({ origin: "http:\\localhost:3000" }))
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+let smtp_Login = process.env.SMPT_LOGIN || "---";
+let smtp_Password = process.env.SMPT_PASSWORD ||  "---";
+
+
 
 let transporter = nodemailer.createTransport({
     service:"gmail",
@@ -17,8 +22,8 @@ let transporter = nodemailer.createTransport({
     //   rejectUnauthorized:false
     // },
     auth: {
-        user:"testnodejsmoskvin@gmail.com",
-        pass: "L3N6cEVwmi1",
+        user:smtp_Login,
+        pass: smtp_Password,
     },
 });
 
@@ -49,6 +54,8 @@ let {lastName, firstName, email,message} = req.body.values;
     
 
 })
+
+let port = process.env.PORT || 3011;
 
 
 
