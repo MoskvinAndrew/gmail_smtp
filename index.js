@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const port = 3011;
+// const port = 3011;
 app.use(cors());
 // app.use(cors({ origin: "http:\\localhost:3000" }))
 app.use(bodyParser.urlencoded({ extended: false }));
