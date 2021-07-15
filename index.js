@@ -38,21 +38,21 @@ app.post('/sendMessage', async(req, res) => {
 let { name, subject, email, message} = req.body.values;
     
     let info = await transporter.sendMail({
-        from: `<h2>'${req.body.values.email}'</h2>`,
+        from: `<h2>${email}</h2>`,
         to: "andrewmoskvin1@gmail.com", // list of receivers
         subject: "HR wrote me something", // Subject line
         html: `<b>Сообщение с вашего порфолио.</b>
                <div>
-               HR's email:&{email} 
+               HR's email:${email} 
                </div>
                 <div>
-               HR's name:&{name} 
+               HR's name:${name} 
                </div>
                 <div>
-               Subject:&{subject} 
+               Subject:${subject} 
                </div>
                <div>
-               Message:&{message} 
+               Message:${message} 
                </div>
                `
        
