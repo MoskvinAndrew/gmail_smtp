@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
-// const port = 3011;
+
 app.use(cors());
 app.use(cors({ origin: "http:\\localhost:3000" }))
 app.use(cors({ origin: "https:\\MoskvinAndrew.github.io" }))
@@ -35,14 +35,26 @@ app.get('/check', (req, res) => {
     res.send('yo man!')
 })
 app.post('/sendMessage', async(req, res) => {
-let {lastName, firstName, email,message} = req.body.values;
+let { name, subject, email, message} = req.body.values;
     
     let info = await transporter.sendMail({
-        from: 'Andrew Moskvin', // sender address
+        from: `<h2>'${req.body.values.email}'</h2>`,
         to: "andrewmoskvin1@gmail.com", // list of receivers
-        subject: "test of feedback form", // Subject line
-        //text: "testing...", // plain text body
-        html: `<div>${firstName}${lastName}${email}</div>`
+        subject: "HR wrote me something", // Subject line
+        html: `<b>Сообщение с вашего порфолио.</b>
+               <div>
+               HR's email:&{email} 
+               </div>
+                <div>
+               HR's name:&{name} 
+               </div>
+                <div>
+               Subject:&{subject} 
+               </div>
+               <div>
+               Message:&{message} 
+               </div>
+               `
        
     })
 
